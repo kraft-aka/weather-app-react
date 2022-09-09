@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Hourly from "./components/hourly/Hourly";
+import Current from "./components/current/Current"
 
 function App() {
   const [data, setData] = useState(null);
@@ -100,12 +101,11 @@ function App() {
           ) : null} */}
           {/* <p>{JSON.stringify(data)}</p>
           <p>{JSON.stringify(forecastData)}</p> */}
-          <div className="location">
-              {data ? <p>{data.name} {data.sys.country}</p> : null }
-          </div>
+          
         </main>
       </div>
-      {/* <Hourly data={forecastData} /> */}
+      <Current data={data}/>
+      <Hourly forecastData={forecastData} />
     </div>
   );
 }
