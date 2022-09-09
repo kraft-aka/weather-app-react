@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Hourly from "./components/Hourly";
 
 function App() {
   const [data, setData] = useState({});
@@ -44,7 +45,7 @@ function App() {
             <p>{data.name}</p>
           </div>
           <div className="temperature">
-            {data.main ? <h1>{data.main.temp.toFixed()} C</h1> : null}
+            {data.main ? <h1>{data.main.temp.toFixed()} °C</h1> : null}
           </div>
           <div className="description">
             {data.weather ? <p>{data.weather[0].main}</p> : null}
@@ -60,6 +61,8 @@ function App() {
               {data.main ? <p>{data.main.humidity} %</p> : null}
             </div>
           </div>
+          {city && <Hourly 
+            data={data}/>}
         </div>
       </div>
     </div>
