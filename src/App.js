@@ -29,8 +29,8 @@ function App() {
           const currentWeatherResp = await response[0].json();
           const forecastWeatherResp = await response[1].json();
 
-          setData({currentWeatherResp});
-          setForecastData({forecastWeatherResp});
+          setData(currentWeatherResp);
+          setForecastData(forecastWeatherResp);
         })
         .catch((error) => console.log(error));
     }
@@ -98,10 +98,10 @@ function App() {
               </div>
             </div>
           ) : null} */}
-          <p>{JSON.stringify(data)}</p>
-          <p>{JSON.stringify(forecastData)}</p>
+          {/* <p>{JSON.stringify(data)}</p>
+          <p>{JSON.stringify(forecastData)}</p> */}
           <div className="location">
-          
+              {data ? <p>{data.name} {data.sys.country}</p> : null }
           </div>
         </main>
       </div>
