@@ -1,22 +1,47 @@
 import React, { useState } from "react";
-import axios from "axios";
-//import Hourly from "./components/Hourly";
+import Hourly from "./components/hourly/Hourly";
 
 function App() {
-  const [data, setData] = useState({});
-  const [city, setCity] = useState("");
+  const [data, setData] = useState(null);
+  const [forecastData, setForecastData] = useState(null);
+  const [city, setCity] = useState('');
 
   const API_KEY = "fb804751dcaaf6b0ad41f3ea9c65892e";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+  const url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
 
-  const getCity = (e) => {
-    if (e.key === "Enter") {
-      axios.get(url).then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      });
-    } 
+  // const getCity = (e) => {
+  //   if (e.key === "Enter") {
+  //     axios.get(url).then((response) => {
+  //       console.log(response.data);
+  //       setData(response.data);
+  //     });
+  //   }
+  // };
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter') {
+      const getCurrent = fetch(url);
+      const getForecast = fetch(url2);
+
+      Promise.all([getCurrent, getForecast])
+        .then(async (response) => {
+          const currentWeatherResp = await response[0].json();
+          const forecastWeatherResp = await response[1].json();
+
+          setData({currentWeatherResp});
+          setForecastData({forecastWeatherResp});
+        })
+        .catch((error) => console.log(error));
+    }
+      
+    
   };
+
+  console.log(data);
+  console.log(forecastData);
+
+  
 
   const refreshPage = () => {
     window.location.reload(false);
@@ -29,7 +54,7 @@ function App() {
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          onKeyPress={getCity}
+          onKeyPress={handleSearch}
           placeholder="Enter your city"
         />
         {city && (
@@ -41,7 +66,7 @@ function App() {
 
       <div className="app-container">
         <main>
-          {typeof data.main != "undefined" ? (
+          {/* {typeof data.main != "undefined" ? (
             <div>
               <div className="location">
                 <p>
@@ -50,7 +75,9 @@ function App() {
               </div>
               <div className="temperature">
                 <h1>{data.main.temp.toFixed()}°C </h1>
-                <img src ={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`} />
+                <img
+                  src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                />
               </div>
               <div className="description">
                 <p>{data.weather[0].main}</p>
@@ -70,9 +97,15 @@ function App() {
                 </div>
               </div>
             </div>
-          ) : null}
+          ) : null} */}
+          <p>{JSON.stringify(data)}</p>
+          <p>{JSON.stringify(forecastData)}</p>
+          <div className="location">
+          
+          </div>
         </main>
       </div>
+      {/* <Hourly data={forecastData} /> */}
     </div>
   );
 }
