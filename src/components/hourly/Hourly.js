@@ -1,4 +1,7 @@
+import { format } from "date-fns/esm";
+
 const Hourly = ({ forecastData }) => {
+  
   return (
     <div className="hourly-weather">
       <section>
@@ -12,7 +15,7 @@ const Hourly = ({ forecastData }) => {
                   src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`}
                   alt="weather icon"
                 />
-                <p>{item.dt_txt}</p>
+                <p>{format(new Date(item.dt_txt), "MMMM do, yyyy H:mma")}</p>
               </div>
             ))}
           </>
