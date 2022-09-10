@@ -9,6 +9,7 @@ const Hourly = ({ forecastData }) => {
           <>
             {forecastData.list.splice(0, 10).map((item, index) => (
               <div className="hourly-data">
+                <p>{format(new Date(item.dt_txt), "MMMM do, yyyy H:mma")}</p>
                 <p key={index} className="hourly-description">
                   {item.weather[0].main}
                 </p>
@@ -17,7 +18,6 @@ const Hourly = ({ forecastData }) => {
                   src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`}
                   alt="weather icon"
                 />
-                <p>{format(new Date(item.dt_txt), "MMMM do, yyyy H:mma")}</p>
               </div>
             ))}
           </>

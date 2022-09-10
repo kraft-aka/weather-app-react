@@ -34,19 +34,18 @@ function App() {
     }
   };
 
-  useEffect(() => { 
-  }, [forecastData]);
+  useEffect(() => {}, [forecastData]);
 
   // handle click event for hourly data
   const handleClick = (e) => {
     e.preventDefault();
-    setShowHourly(()=>!showHourly);
+    setShowHourly(() => !showHourly);
   };
 
   // handle click event for daily data
   const handleClickDaily = (e) => {
     e.preventDefault();
-    setShowDaily(()=>!showDaily);
+    setShowDaily(() => !showDaily);
   };
 
   console.log(data);

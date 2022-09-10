@@ -6,7 +6,6 @@ const Daily = ({ forecastData }) => {
   const forecastDays = WEEK_DAYS.slice(weekDay, WEEK_DAYS.length).concat(
     WEEK_DAYS.slice(0, weekDay)
   );
-  console.log(forecastDays);
 
   return (
     <div className="daily-weather">
@@ -15,6 +14,7 @@ const Daily = ({ forecastData }) => {
           <>
             {forecastData.list.splice(0, 5).map((item, index) => (
               <div className="daily-data">
+                <h4 className="day">{forecastDays[index]}</h4>
                 <p key={index} className="daily-description">
                   {item.weather[0].main}
                 </p>
@@ -23,7 +23,6 @@ const Daily = ({ forecastData }) => {
                   src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`}
                   alt="weather icon"
                 />
-                <h4 className="day">{forecastDays[index]}</h4>
               </div>
             ))}
           </>
