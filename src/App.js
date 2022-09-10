@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Hourly from "./components/hourly/Hourly";
 import Current from "./components/current/Current";
 import Daily from "./components/daily/Daily";
@@ -8,20 +8,13 @@ import { API_KEY, API_URL } from "./api";
 function App() {
   const [data, setData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
+  const [showHourly, setShowHourly] = useState(false);
+  const [showDaily, setShowDaily] = useState(false);
   const [city, setCity] = useState("");
 
   // openweatherapi endpoints
   const currentUrl = `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric`;
   const forecastUrl = `${API_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`;
-
-  // const getCity = (e) => {
-  //   if (e.key === "Enter") {
-  //     axios.get(url).then((response) => {
-  //       console.log(response.data);
-  //       setData(response.data);
-  //     });
-  //   }
-  // };
 
   // fetches data from openweather api
   const handleSearch = (e) => {
@@ -39,6 +32,21 @@ function App() {
         })
         .catch((error) => console.log(error));
     }
+  };
+
+  useEffect(() => { 
+  }, [forecastData]);
+
+  // handle click event for hourly data
+  const handleClick = (e) => {
+    e.preventDefault();
+    setShowHourly(()=>!showHourly);
+  };
+
+  // handle click event for daily data
+  const handleClickDaily = (e) => {
+    e.preventDefault();
+    setShowDaily(()=>!showDaily);
   };
 
   console.log(data);
@@ -60,14 +68,21 @@ function App() {
           placeholder="Enter your city"
         />
         {city && (
-          <button className="app-btn" onClick={refreshPage}>
-            Refresh
-          </button>
+          <>
+            <button className="app-btn" onClick={refreshPage}>
+              Refresh
+            </button>
+
+            <div className="app-comp-btn">
+              <button onClick={handleClick}>Get Hourly forecast</button>
+              <button onClick={handleClickDaily}>Get Daily forecast</button>
+            </div>
+          </>
         )}
       </div>
       <Current data={data} />
-      {forecastData && <Hourly forecastData={forecastData} />}
-      {forecastData && <Daily forecastData={forecastData} />}
+      {showHourly && <Hourly forecastData={forecastData} />}
+      {showDaily && <Daily forecastData={forecastData} />}
       <Footer />
     </div>
   );
