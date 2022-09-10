@@ -105,7 +105,7 @@ function App() {
         </main>
       </div>
       <Current data={data}/>
-      <Hourly forecastData={forecastData} />
+      {forecastData && <Hourly forecastData={forecastData} />}
     </div>
   );
 }
