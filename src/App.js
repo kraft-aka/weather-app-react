@@ -20,6 +20,7 @@ function App() {
   //   }
   // };
 
+  // fetches data from openweather api
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
       const getCurrent = fetch(url);
@@ -43,7 +44,7 @@ function App() {
   console.log(forecastData);
 
   
-
+  // refreshes the page
   const refreshPage = () => {
     window.location.reload(false);
   };
@@ -63,46 +64,6 @@ function App() {
             Refresh
           </button>
         )}
-      </div>
-
-      <div className="app-container">
-        <main>
-          {/* {typeof data.main != "undefined" ? (
-            <div>
-              <div className="location">
-                <p>
-                  {data.name} {data.sys.country}
-                </p>
-              </div>
-              <div className="temperature">
-                <h1>{data.main.temp.toFixed()}°C </h1>
-                <img
-                  src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-                />
-              </div>
-              <div className="description">
-                <p>{data.weather[0].main}</p>
-              </div>
-              <div className="bottom">
-                <div className="feels">
-                  <p>feels like</p>
-                  <p>{data.main.feels_like.toFixed()}°C</p>
-                </div>
-                <div className="wind">
-                  <p>wind speed</p>
-                  <p>{data.wind.speed} MPH</p>
-                </div>
-                <div className="humidity">
-                  <p>humidity</p>
-                  <p>{data.main.humidity} %</p>
-                </div>
-              </div>
-            </div>
-          ) : null} */}
-          {/* <p>{JSON.stringify(data)}</p>
-          <p>{JSON.stringify(forecastData)}</p> */}
-          
-        </main>
       </div>
       <Current data={data}/>
       {forecastData && <Hourly forecastData={forecastData} />}
