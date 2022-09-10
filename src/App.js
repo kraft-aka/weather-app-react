@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Hourly from "./components/hourly/Hourly";
 import Current from "./components/current/Current";
+import Footer from "./components/footer/Footer";
 import { API_KEY, API_URL } from "./api";
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
       </div>
       <Current data={data} />
       {forecastData && <Hourly forecastData={forecastData} />}
+      <Footer />
     </div>
   );
 }
