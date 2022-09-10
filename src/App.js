@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import Hourly from "./components/hourly/Hourly";
-import Current from "./components/current/Current"
+import Current from "./components/current/Current";
+import { API_KEY, API_URL } from "./api";
 
 function App() {
   const [data, setData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState("");
 
-  const API_KEY = "fb804751dcaaf6b0ad41f3ea9c65892e";
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
-  const url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
+  // openweatherapi endpoints
+  const currentUrl = `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric`;
+  const forecastUrl = `${API_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`;
 
   // const getCity = (e) => {
   //   if (e.key === "Enter") {
@@ -22,9 +23,9 @@ function App() {
 
   // fetches data from openweather api
   const handleSearch = (e) => {
-    if (e.key === 'Enter') {
-      const getCurrent = fetch(url);
-      const getForecast = fetch(url2);
+    if (e.key === "Enter") {
+      const getCurrent = fetch(currentUrl);
+      const getForecast = fetch(forecastUrl);
 
       Promise.all([getCurrent, getForecast])
         .then(async (response) => {
@@ -36,14 +37,11 @@ function App() {
         })
         .catch((error) => console.log(error));
     }
-      
-    
   };
 
   console.log(data);
   console.log(forecastData);
 
-  
   // refreshes the page
   const refreshPage = () => {
     window.location.reload(false);
@@ -65,7 +63,7 @@ function App() {
           </button>
         )}
       </div>
-      <Current data={data}/>
+      <Current data={data} />
       {forecastData && <Hourly forecastData={forecastData} />}
     </div>
   );
