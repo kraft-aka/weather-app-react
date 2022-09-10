@@ -1,10 +1,12 @@
 import { WEEK_DAYS } from "../../api";
 
 const Daily = ({ forecastData }) => {
-
+  //create date and get a day
   const weekDay = new Date().getDay();
-  const forecastDays = WEEK_DAYS.slice(weekDay, WEEK_DAYS.length).concat(WEEK_DAYS.slice(0, weekDay));
-  console.log(forecastDays)
+  const forecastDays = WEEK_DAYS.slice(weekDay, WEEK_DAYS.length).concat(
+    WEEK_DAYS.slice(0, weekDay)
+  );
+  console.log(forecastDays);
 
   return (
     <div className="daily-weather">
@@ -12,23 +14,23 @@ const Daily = ({ forecastData }) => {
         {forecastData ? (
           <>
             {forecastData.list.splice(0, 5).map((item, index) => (
-              <div className="hourly-data">
-                <p key={index} className="hourly-description">
+              <div className="daily-data">
+                <p key={index} className="daily-description">
                   {item.weather[0].main}
                 </p>
-                <h3 id="hourly-temp">{item.main.temp.toFixed()}°C</h3>
+                <h3 id="daily-temp">{item.main.temp.toFixed()}°C</h3>
                 <img
                   src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`}
                   alt="weather icon"
                 />
-                {/* <p>{format(new Date(item.dt_txt), "MMMM do, yyyy H:mma")}</p> */}
+                <h4 className="day">{forecastDays[index]}</h4>
               </div>
             ))}
           </>
         ) : null}
       </section>
     </div>
-    );
-}
- 
+  );
+};
+
 export default Daily;
