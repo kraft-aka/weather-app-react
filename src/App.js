@@ -11,6 +11,7 @@ function App() {
   const [showHourly, setShowHourly] = useState(false);
   const [showDaily, setShowDaily] = useState(false);
   const [city, setCity] = useState("");
+  const [error, setError] = useState(false);
 
   // openweatherapi endpoints
   const currentUrl = `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric`;
@@ -19,6 +20,7 @@ function App() {
   // fetches data from openweather api
   const handleSearch = (e) => {
     if (e.key === "Enter") {
+      setError(false);
       const getCurrent = fetch(currentUrl);
       const getForecast = fetch(forecastUrl);
 
@@ -27,10 +29,18 @@ function App() {
           const currentWeatherResp = await response[0].json();
           const forecastWeatherResp = await response[1].json();
 
+          // check if given city found in api, if not error message will be thrown
+          if (
+            currentWeatherResp.message === "city not found" &&
+            forecastWeatherResp.message === "city not found"
+          ) {
+            throw Error("error occured!");
+          }
+
           setData(currentWeatherResp);
           setForecastData(forecastWeatherResp);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => setError(error.message));
     }
   };
 
@@ -48,9 +58,6 @@ function App() {
     setShowDaily(() => !showDaily);
   };
 
-  console.log(data);
-  console.log(forecastData);
-
   // refreshes the page
   const refreshPage = () => {
     window.location.reload(false);
@@ -66,6 +73,11 @@ function App() {
           onKeyPress={handleSearch}
           placeholder="Enter your city"
         />
+        {error && (
+          <div>
+            <p>some error occured</p>
+          </div>
+        )}
         {city && (
           <>
             <button className="app-btn" onClick={refreshPage}>
@@ -73,8 +85,12 @@ function App() {
             </button>
 
             <div className="app-comp-btn">
-              <button onClick={handleClick}>{ !showHourly ? 'Get Hourly forecast': 'Back'}</button>
-              <button onClick={handleClickDaily}>{!showDaily ? 'Get Daily forecast': 'Back'}</button>
+              <button onClick={handleClick}>
+                {!showHourly ? "Get Hourly forecast" : "Back"}
+              </button>
+              <button onClick={handleClickDaily}>
+                {!showDaily ? "Get Daily forecast" : "Back"}
+              </button>
             </div>
           </>
         )}
