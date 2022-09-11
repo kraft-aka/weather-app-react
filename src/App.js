@@ -12,6 +12,7 @@ function App() {
   const [showDaily, setShowDaily] = useState(false);
   const [city, setCity] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // openweatherapi endpoints
   const currentUrl = `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric`;
@@ -21,6 +22,7 @@ function App() {
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       setError(false);
+      setLoading(true);
       const getCurrent = fetch(currentUrl);
       const getForecast = fetch(forecastUrl);
 
@@ -42,6 +44,7 @@ function App() {
         })
         .catch((error) => setError(error.message));
     }
+    setLoading(false);
   };
 
   useEffect(() => {}, [forecastData]);
@@ -76,6 +79,11 @@ function App() {
         {error && (
           <div>
             <p>some error occured</p>
+          </div>
+        )}
+        {loading && (
+          <div>
+            <p>loading...</p>
           </div>
         )}
         {city && (
