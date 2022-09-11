@@ -73,8 +73,8 @@ function App() {
             </button>
 
             <div className="app-comp-btn">
-              <button onClick={handleClick}>Get Hourly forecast</button>
-              <button onClick={handleClickDaily}>Get Daily forecast</button>
+              <button onClick={handleClick}>{ !showHourly ? 'Get Hourly forecast': 'Back'}</button>
+              <button onClick={handleClickDaily}>{!showDaily ? 'Get Daily forecast': 'Back'}</button>
             </div>
           </>
         )}
