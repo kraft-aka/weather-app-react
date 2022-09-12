@@ -1,6 +1,9 @@
+//import { useNavigate } from "react-router-dom";
 // provides current weather data
 
 const Current = (props) => {
+
+  //const navigate = useNavigate();
   return (
     <div className="current">
       {props.data ? (
@@ -35,6 +38,7 @@ const Current = (props) => {
           </div>
         </>
       ) : null}
+        {/* <button onClick={()=> navigate('/hourly', { replace: true })}>Hourly</button> */}
     </div>
   );
 };

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Hourly from "./components/hourly/Hourly";
 import Current from "./components/current/Current";
 import Daily from "./components/daily/Daily";
 import Footer from "./components/footer/Footer";
 import { API_KEY, API_URL } from "./api";
+import "./Style.css";
 
 function App() {
   const [data, setData] = useState(null);
@@ -67,47 +69,54 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="app-search">
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          onKeyPress={handleSearch}
-          placeholder="Enter your city"
-        />
-        {error && (
-          <div>
-            <p>some error occured</p>
-          </div>
-        )}
-        {loading && (
-          <div>
-            <p>loading...</p>
-          </div>
-        )}
-        {city && (
-          <>
-            <button className="app-btn" onClick={refreshPage}>
-              Refresh
-            </button>
+    <Router>
+      <div className="app">
+        <div className="app-search">
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            onKeyPress={handleSearch}
+            placeholder="Enter your city"
+          />
 
-            <div className="app-comp-btn">
-              <button onClick={handleClick}>
-                {!showHourly ? "Get Hourly forecast" : "Back"}
-              </button>
-              <button onClick={handleClickDaily}>
-                {!showDaily ? "Get Daily forecast" : "Back"}
-              </button>
+          {error && (
+            <div>
+              <p>some error occured</p>
             </div>
-          </>
-        )}
+          )}
+          {loading && (
+            <div>
+              <p>loading...</p>
+            </div>
+          )}
+          {city && (
+            <>
+              <button className="app-btn" onClick={refreshPage}>
+                Refresh
+              </button>
+
+              <div className="app-btn-container">
+                <button onClick={handleClick} className="app-btn-expand">
+                  {!showHourly ? "Get Hourly forecast" : "Back"}
+                </button>
+                <button onClick={handleClickDaily} className="app-btn-expand">
+                  {!showDaily ? "Get Daily forecast" : "Back"}
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+        {/* <Routes>
+          <Route path="/hourly" element={<Hourly />} />
+          <Route path="/daily" element={<Daily />} />
+        </Routes> */}
+        <Current data={data} />
+        {showHourly && <Hourly forecastData={forecastData} />}
+        {showDaily && <Daily forecastData={forecastData} />}
+        <Footer />
       </div>
-      <Current data={data} />
-      {showHourly && <Hourly forecastData={forecastData} />}
-      {showDaily && <Daily forecastData={forecastData} />}
-      <Footer />
-    </div>
+    </Router>
   );
 }
 
