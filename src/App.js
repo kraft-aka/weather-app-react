@@ -20,7 +20,6 @@ function App() {
   const currentUrl = `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric`;
   const forecastUrl = `${API_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`;
 
-
   // fetches data from openweather api
   const handleSearch = (e) => {
     if (e.key === "Enter") {
@@ -41,9 +40,9 @@ function App() {
           ) {
             throw Error("error occured!");
           }
-
           setData(currentWeatherResp);
           setForecastData(forecastWeatherResp);
+          setCity("");
         })
         .catch((error) => setError(error.message));
     }
@@ -64,7 +63,6 @@ function App() {
     setShowDaily(() => !showDaily);
   };
 
- 
   // refreshes the page
   const refreshPage = () => {
     window.location.reload(false);
@@ -84,7 +82,7 @@ function App() {
 
           {error && (
             <div>
-              <p>some error occured</p>
+              <p id="app-error-message">some error occured</p>
             </div>
           )}
           {loading && (
@@ -92,33 +90,40 @@ function App() {
               <p>loading...</p>
             </div>
           )}
-          {city && (
+        </div>
+        <Switch>
+          <Route path="/app" element={<App />} />
+          <Route path="/hourly" element={<Hourly />} />
+        </Switch>
+        <Current data={data} />
+        {showHourly && <Hourly forecastData={forecastData} />}
+        {showDaily && <Daily forecastData={forecastData} />}
+        <div className="app-btn-container">
+          {data && (
             <>
               <button className="app-btn" onClick={refreshPage}>
                 Refresh
               </button>
 
-              <div className="app-btn-container">
-                {/* <button onClick={handleClick} className="app-btn-expand">
+              {/* <button onClick={handleClick} className="app-btn-expand">
                   {!showHourly ? "Get Hourly forecast" : "Back"}
                 </button> */}
-                <button onClick={handleClickDaily} className="app-btn-expand">
-                  {!showDaily ? "Get Daily forecast" : "Back"}
+              <button
+                onClick={handleClickDaily}
+                className="app-btn-expand"
+                type="button"
+              >
+                {!showDaily ? "Get Daily forecast" : "Back"}
+              </button>
+              <Link to="/hourly" onClick={handleClick}>
+                <button type="button">
+                  {!showHourly ? "Get Hourly forecast" : "Back"}
                 </button>
-              </div>
+              </Link>
             </>
           )}
-          <div>
-            <Link to='/hourly' onClick={handleClick}>hourly</Link>
-          </div>
         </div>
-        <Switch>
-          <Route path="/app" element={<App />} />
-          <Route path="/hourly"  element={<Hourly />} />
-        </Switch>
-        <Current data={data} />
-        {showHourly && <Hourly forecastData={forecastData} />}
-        {showDaily && <Daily forecastData={forecastData} />}
+
         <Footer />
       </div>
     </Router>
