@@ -13,7 +13,7 @@ const Daily = ({ forecastData }) => {
         {forecastData ? (
           <>
             {forecastData.list.splice(0, 5).map((item, index) => (
-              <div className="daily-data">
+              <div className="daily-data" key={index}>
                 <h4 className="day">{forecastDays[index]}</h4>
                 <p key={index} className="daily-description">
                   {item.weather[0].main}

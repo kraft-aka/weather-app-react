@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Hourly from "./components/hourly/Hourly";
 import Current from "./components/current/Current";
 import Daily from "./components/daily/Daily";
@@ -19,6 +19,7 @@ function App() {
   // openweatherapi endpoints
   const currentUrl = `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric`;
   const forecastUrl = `${API_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`;
+
 
   // fetches data from openweather api
   const handleSearch = (e) => {
@@ -63,6 +64,7 @@ function App() {
     setShowDaily(() => !showDaily);
   };
 
+ 
   // refreshes the page
   const refreshPage = () => {
     window.location.reload(false);
@@ -97,20 +99,23 @@ function App() {
               </button>
 
               <div className="app-btn-container">
-                <button onClick={handleClick} className="app-btn-expand">
+                {/* <button onClick={handleClick} className="app-btn-expand">
                   {!showHourly ? "Get Hourly forecast" : "Back"}
-                </button>
+                </button> */}
                 <button onClick={handleClickDaily} className="app-btn-expand">
                   {!showDaily ? "Get Daily forecast" : "Back"}
                 </button>
               </div>
             </>
           )}
+          <div>
+            <Link to='/hourly' onClick={handleClick}>hourly</Link>
+          </div>
         </div>
-        {/* <Routes>
-          <Route path="/hourly" element={<Hourly />} />
-          <Route path="/daily" element={<Daily />} />
-        </Routes> */}
+        <Switch>
+          <Route path="/app" element={<App />} />
+          <Route path="/hourly"  element={<Hourly />} />
+        </Switch>
         <Current data={data} />
         {showHourly && <Hourly forecastData={forecastData} />}
         {showDaily && <Daily forecastData={forecastData} />}
