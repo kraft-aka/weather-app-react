@@ -15,7 +15,7 @@ const Hourly = ({ forecastData }) => {
         {forecastData ? (
           <>
             {forecastData.list.splice(0, 10).map((item, index) => (
-              <div className="hourly-data" key={index}>
+              <div className="hourly-data" key={index} style={{ display:'flex', justifyContent: 'space-around' }}>
                 <p>{format(new Date(item.dt_txt), "MMMM do, yyyy H:mma")}</p>
                 <p key={index} className="hourly-description">
                   {item.weather[0].main}
