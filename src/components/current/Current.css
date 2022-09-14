@@ -7,7 +7,12 @@ h1 {
 #current-description {
   font-size: 20px;
   font-weight: 700;
-  text-shadow: 3px 6px rgba(50,50,70,0.5);
+  text-shadow: 2px 4px rgba(50,50,70,0.5);
+}
+
+#current-title {
+  text-shadow: 2px 4px rgba(50,50,70,0.5);
+  margin-top: 50px;
 }
 
 .current {
@@ -22,6 +27,7 @@ h1 {
 .current-location {
   display: flex;
   justify-content: center;
+  text-shadow: 2px 4px rgba(50,50,70,0.5);
 }
 
 .current-weather {
@@ -44,7 +50,7 @@ h1 {
 .bottom-desc {
   font-size: 20px;
   font-weight: 700;
-  text-shadow: 3px 6px rgba(50,50,70,0.5);
+  text-shadow: 2px 4px rgba(50,50,70,0.5);
   margin-top: 10px;
 }
 

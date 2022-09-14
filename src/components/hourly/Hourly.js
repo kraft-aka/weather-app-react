@@ -11,7 +11,7 @@ const Hourly = ({ forecastData }) => {
   // }
   return (
     <div className="hourly-weather">
-      <section>
+      <main>
         {forecastData ? (
           <>
             {forecastData.list.splice(0, 10).map((item, index) => (
@@ -37,7 +37,7 @@ const Hourly = ({ forecastData }) => {
             ))}
           </>
         ) : null}
-      </section>
+      </main>
       {/* <div>
         <button type="button" onClick={goBack}>Back</button>
       </div> */}

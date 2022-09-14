@@ -5,8 +5,10 @@
 }
 
 .hourly-data {
-  padding: 5px 5px;
+  align-items: center;
+  padding: 3px 3px;
   border-radius: 10px;
   background-color: rgba(255,255,255,0.2);
   box-shadow: 3px 6px rgba(0,0,0,0.2); 
+  margin-bottom: 5px;
 }

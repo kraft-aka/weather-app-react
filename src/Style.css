@@ -7,10 +7,10 @@
 
 body {
   font-size: 16px;
-  background-image: url('./assets/background_warm.jpg');
+  background-image: url('./assets/nasa-bg.jpg');
   background-size: cover;
   background-position: bottom;
-  transition: 0.4 ease-out;
+  background-repeat: repeat;
   color: #22223b;
   width: 100%;
   height: 100vh;
@@ -26,7 +26,8 @@ input {
   outline: none;
   font-size: 16px;
   background: none;
-  background-color: rgba(255,255 , 255, 0.65);
+  background-color: rgba(255,255,255,0.65);
+  box-shadow: 3px 6px rgba(0,0,0,0.2);
   transition: 0.4s ease-in-out;
 }
 
@@ -36,11 +37,21 @@ input:focus {
 
 button {
   width: 100%;
-  height: 30px;
+  height: 40px;
   margin: 5px 0;
   border-radius: 10px;
   border: none;
   background-color: #fff;
+  box-shadow: 3px 6px rgba(0,0,0,0.2);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.01, 1.01);
+  background-color: rgba(255,255,255,0.65);
 }
 
 .app {
@@ -48,7 +59,6 @@ button {
   margin: auto;
   padding: 0 1rem;
   position: relative;
-  top: 5%;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -69,12 +79,12 @@ button {
 .app-btn-container {
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 50px;
 }
 
 .app .app-search {
   position: relative;
-  top: 5%;
+  top: 25px;
   display: flex;
   justify-content: center;
 } 
@@ -85,9 +95,10 @@ button {
 
 #app-error-message {
   position: absolute;
-  top: 100%;
-  left: 1%;
+  top: 120%;
+  left: 0;
   color: red;
   display: flex;
   align-items: flex-end;
+  font-weight: 700;
 }

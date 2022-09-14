@@ -8,12 +8,13 @@ const Current = (props) => {
   //const navigate = useNavigate();
   return (
     <div className="current">
+      { props.data && <h4 id="current-title">Today</h4>}
       {props.data ? (
         <>
           <div className="current-location">
-            <h3 className="current-city">
+            <h2 className="current-city">
               <TiLocation /> {props.data.name} {props.data.sys.country}
-            </h3>
+            </h2>
           </div>
           <div className="current-weather">
             <div className="current-temp">

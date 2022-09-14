@@ -6,10 +6,17 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  
+  background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.75));
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
