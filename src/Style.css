@@ -5,12 +5,33 @@
   margin: 0;
 }
 
+body {
+  font-size: 16px;
+  background-image: url('./assets/background_warm.jpg');
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4 ease-out;
+  color: #22223b;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
 input {
   width: 100%;
-  height: 30px;
-  padding: 5px;
+  padding: 15px 15px;
   border-radius: 15px;
   border: none;
+  appearance: none;
+  outline: none;
+  font-size: 16px;
+  background: none;
+  background-color: rgba(255,255 , 255, 0.65);
+  transition: 0.4s ease-in-out;
+}
+
+input:focus {
+  background-color: rgba(255,255,255,0.85);
 }
 
 button {
@@ -23,16 +44,16 @@ button {
 }
 
 .app {
-  max-width: 700px;
-  height: 700px;
+  height: 100vh;
   margin: auto;
   padding: 0 1rem;
   position: relative;
   top: 5%;
-  color: #22223b;
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.75));
 }
 
 .app::before {
