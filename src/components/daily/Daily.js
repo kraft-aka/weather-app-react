@@ -1,5 +1,5 @@
 import { WEEK_DAYS } from "../../api";
-import './Daily.css';
+import './Daily.css'
 
 const Daily = ({ forecastData }) => {
   //create date and get a day

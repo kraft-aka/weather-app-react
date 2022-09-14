@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import { API_KEY, API_URL } from "./api";
 import "./Style.css";
 
+
 function App() {
   const [data, setData] = useState(null);
   const [forecastData, setForecastData] = useState(null);

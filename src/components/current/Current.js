@@ -1,5 +1,7 @@
 //import { useNavigate } from "react-router-dom";
+import { TiLocation } from 'react-icons/ti'
 import "./Current.css";
+
 // provides current weather data
 
 const Current = (props) => {
@@ -10,7 +12,7 @@ const Current = (props) => {
         <>
           <div className="current-location">
             <h3 className="current-city">
-              {props.data.name} {props.data.sys.country}
+              <TiLocation /> {props.data.name} {props.data.sys.country}
             </h3>
           </div>
           <div className="current-weather">
@@ -27,7 +29,9 @@ const Current = (props) => {
           <div className="current-bottom">
             <div className="feels">
               <p>feels like</p>
-              <p className="bottom-desc">{props.data.main.feels_like.toFixed()}°C</p>
+              <p className="bottom-desc">
+                {props.data.main.feels_like.toFixed()}°C
+              </p>
             </div>
             <div className="wind">
               <p>wind speed</p>
