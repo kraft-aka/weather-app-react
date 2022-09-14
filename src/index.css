@@ -8,6 +8,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.75));
   background-attachment: fixed;
+  
 }
 
 code {

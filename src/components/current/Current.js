@@ -23,7 +23,7 @@ const Current = (props) => {
               <div id="current-img">
                 <img
                   src={`http://openweathermap.org/img/w/${props.data.weather[0].icon}.png`}
-                />
+                   id='weather-icon'/>
               </div>
             </div>
           </div>

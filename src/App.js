@@ -4,8 +4,10 @@ import Hourly from "./components/hourly/Hourly";
 import Current from "./components/current/Current";
 import Daily from "./components/daily/Daily";
 import Footer from "./components/footer/Footer";
+import {HiSearchCircle} from 'react-icons/hi' 
 import { API_KEY, API_URL } from "./api";
 import "./Style.css";
+
 
 
 function App() {
@@ -73,6 +75,11 @@ function App() {
     <Router>
       <div className="app">
         <div className="app-search">
+          <HiSearchCircle 
+          style={{ position: 'absolute',
+          top: '32%',
+          left: '10px'    
+           }}/>
           <input
             type="text"
             value={city}
