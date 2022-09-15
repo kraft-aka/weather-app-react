@@ -1,14 +1,8 @@
-//import { useHistory } from "react-router-dom";
 import { format } from "date-fns/esm";
-import './Hourly.css'
+import "./Hourly.css";
 
 // provides hourly weather data every 3 hours
 const Hourly = ({ forecastData }) => {
-  //const history = useHistory();
-
-  // const goBack = () => {
-  //   history.push('/');
-  // }
   return (
     <div className="hourly-weather">
       <main>
@@ -38,9 +32,7 @@ const Hourly = ({ forecastData }) => {
           </>
         ) : null}
       </main>
-      {/* <div>
-        <button type="button" onClick={goBack}>Back</button>
-      </div> */}
+      <div></div>
     </div>
   );
 };

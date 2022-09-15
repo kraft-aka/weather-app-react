@@ -4,11 +4,9 @@ import Hourly from "./components/hourly/Hourly";
 import Current from "./components/current/Current";
 import Daily from "./components/daily/Daily";
 import Footer from "./components/footer/Footer";
-import {HiSearchCircle} from 'react-icons/hi' 
+import { HiSearchCircle } from "react-icons/hi";
 import { API_KEY, API_URL } from "./api";
 import "./Style.css";
-
-
 
 function App() {
   const [data, setData] = useState(null);
@@ -75,11 +73,9 @@ function App() {
     <Router>
       <div className="app">
         <div className="app-search">
-          <HiSearchCircle 
-          style={{ position: 'absolute',
-          top: '32%',
-          left: '10px'    
-           }}/>
+          <HiSearchCircle
+            style={{ position: "absolute", top: "32%", left: "10px" }}
+          />
           <input
             type="text"
             value={city}
@@ -112,10 +108,6 @@ function App() {
               <button className="app-btn" onClick={refreshPage}>
                 Refresh
               </button>
-
-              {/* <button onClick={handleClick} className="app-btn-expand">
-                  {!showHourly ? "Get Hourly forecast" : "Back"}
-                </button> */}
               <button
                 onClick={handleClickDaily}
                 className="app-btn-expand"
@@ -131,7 +123,6 @@ function App() {
             </>
           )}
         </div>
-
         <Footer />
       </div>
     </Router>
