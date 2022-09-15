@@ -1,14 +1,12 @@
-//import { useNavigate } from "react-router-dom";
-import { TiLocation } from 'react-icons/ti'
+import { TiLocation } from "react-icons/ti";
 import "./Current.css";
 
 // provides current weather data
 
 const Current = (props) => {
-  //const navigate = useNavigate();
   return (
     <div className="current">
-      { props.data && <h4 id="current-title">Today</h4>}
+      {props.data && <h4 id="current-title">Today</h4>}
       {props.data ? (
         <>
           <div className="current-location">
@@ -23,7 +21,9 @@ const Current = (props) => {
               <div id="current-img">
                 <img
                   src={`http://openweathermap.org/img/w/${props.data.weather[0].icon}.png`}
-                   id='weather-icon'/>
+                  id="weather-icon"
+                  alt="weather icon"
+                />
               </div>
             </div>
           </div>
@@ -45,7 +45,6 @@ const Current = (props) => {
           </div>
         </>
       ) : null}
-      {/* <button onClick={()=> navigate('/hourly', { replace: true })}>Hourly</button> */}
     </div>
   );
 };
