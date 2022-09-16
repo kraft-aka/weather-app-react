@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-gh-pages/static/css/main.b5d21cee.css",
+    "main.js": "/react-gh-pages/static/js/main.ccd7116b.js",
+    "static/media/nasa-bg.jpg": "/react-gh-pages/static/media/nasa-bg.99f55466a36ee9ade725.jpg",
+    "index.html": "/react-gh-pages/index.html",
+    "main.b5d21cee.css.map": "/react-gh-pages/static/css/main.b5d21cee.css.map",
+    "main.ccd7116b.js.map": "/react-gh-pages/static/js/main.ccd7116b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b5d21cee.css",
+    "static/js/main.ccd7116b.js"
+  ]
+}
