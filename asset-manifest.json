@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.251c8631.css",
-    "main.js": "/static/js/main.ccd7116b.js",
-    "static/media/nasa-bg.jpg": "/static/media/nasa-bg.99f55466a36ee9ade725.jpg",
-    "index.html": "/index.html",
-    "main.251c8631.css.map": "/static/css/main.251c8631.css.map",
-    "main.ccd7116b.js.map": "/static/js/main.ccd7116b.js.map"
+    "main.css": "/weather-app-react/static/css/main.d1d98175.css",
+    "main.js": "/weather-app-react/static/js/main.ccd7116b.js",
+    "static/media/nasa-bg.jpg": "/weather-app-react/static/media/nasa-bg.99f55466a36ee9ade725.jpg",
+    "index.html": "/weather-app-react/index.html",
+    "main.d1d98175.css.map": "/weather-app-react/static/css/main.d1d98175.css.map",
+    "main.ccd7116b.js.map": "/weather-app-react/static/js/main.ccd7116b.js.map"
   },
   "entrypoints": [
-    "static/css/main.251c8631.css",
+    "static/css/main.d1d98175.css",
     "static/js/main.ccd7116b.js"
   ]
 }
