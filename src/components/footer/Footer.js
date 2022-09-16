@@ -6,7 +6,7 @@ const Footer = () => {
       <p>
         {" "}
         <MdOnlinePrediction
-          style={{ position: "relative", bottom: "0.01rem", left: ".1rem" }}
+          style={{ position: "relative", bottom: "-0.1rem", left: "-.1rem" }}
         />{" "}
         Weather-App 2022
       </p>

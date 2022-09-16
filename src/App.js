@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Hourly from "./components/hourly/Hourly";
 import Current from "./components/current/Current";
@@ -35,10 +35,7 @@ function App() {
           const forecastWeatherResp = await response[1].json();
 
           // check if given city found in api, if not error message will be thrown
-          if (
-            currentWeatherResp.message === "city not found" &&
-            forecastWeatherResp.message === "city not found"
-          ) {
+          if (currentWeatherResp.message === "city not found") {
             throw Error("error occured!");
           }
           setData(currentWeatherResp);
@@ -50,18 +47,16 @@ function App() {
     setLoading(false);
   };
 
-  useEffect(() => {}, [forecastData]);
-
   // handle click event for hourly data
   const handleClick = (e) => {
     e.preventDefault();
-    setShowHourly(() => !showHourly);
+    setShowHourly((showHourly) => !showHourly);
   };
 
   // handle click event for daily data
   const handleClickDaily = (e) => {
     e.preventDefault();
-    setShowDaily(() => !showDaily);
+    setShowDaily((showDaily) => !showDaily);
   };
 
   // refreshes the page
@@ -96,8 +91,10 @@ function App() {
           )}
         </div>
         <Switch>
-          <Route path="/app" element={<App />} />
-          <Route path="/hourly" element={<Hourly />} />
+          <Route
+            path="/hourly"
+            element={<Hourly forecastData={forecastData} />}
+          />
         </Switch>
         <Current data={data} />
         {showHourly && <Hourly forecastData={forecastData} />}
@@ -115,8 +112,8 @@ function App() {
               >
                 {!showDaily ? "Get Daily forecast" : "Back"}
               </button>
-              <Link to="/hourly" onClick={handleClick}>
-                <button type="button">
+              <Link to="/hourly">
+                <button type="button" onClick={handleClick}>
                   {!showHourly ? "Get Hourly forecast" : "Back"}
                 </button>
               </Link>
